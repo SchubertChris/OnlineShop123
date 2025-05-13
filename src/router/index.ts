@@ -118,9 +118,7 @@ const router = createRouter({
   }
 });
 
-router.beforeEach((to, from, next) => {
 router.beforeEach((to: any, from: any, next: any) => {
-  
   // Hier könnte später die Authentifizierungsprüfung implementiert werden
   // Beispiel:
   // if (to.meta.requiresAuth && !isAuthenticated()) {
@@ -134,4 +132,4 @@ router.beforeEach((to: any, from: any, next: any) => {
   next();
 });
 
-export default router;
+export default router; 
