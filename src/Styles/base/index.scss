@@ -1,0 +1,18 @@
+// =======================================
+// INDEX FÜR SHOP OF SPIRIT
+// =======================================
+// Zentraler Import aller SCSS-Dateien
+
+// GRUNDLEGENDE STILE
+// ---------------------------------------
+// Variablen müssen zuerst importiert werden, da sie in den anderen Dateien verwendet werden
+@import 'variables.scss';
+
+// Mixins als Nächstes, da sie in den anderen Dateien verwendet werden können
+@import 'mixins.scss';
+
+// Reset als Grundlage für alle weiteren Stile
+@import 'reset.scss';
+
+// Animationen
+@import 'animations.scss';

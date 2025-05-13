@@ -1,0 +1,239 @@
+// =======================================
+// RESET FÜR SHOP OF SPIRIT
+// =======================================
+// Moderne CSS-Reset-Datei mit Best Practices
+
+// BOX SIZING
+// ---------------------------------------
+// Setzt box-sizing für alle Elemente auf border-box
+*, 
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// HTML & BODY
+// ---------------------------------------
+html {
+  font-size: 100%; // Setzt 1rem = 16px
+  scroll-behavior: smooth; // Sanftes Scrollen für Anker-Links
+  -webkit-text-size-adjust: 100%; // Verhindert Schriftgrößenanpassung bei Gerätedrehung
+  -webkit-font-smoothing: antialiased; // Verbesserte Schriftdarstellung
+  -moz-osx-font-smoothing: grayscale; // Verbesserte Schriftdarstellung in Firefox
+  text-rendering: optimizeLegibility; // Verbesserte Schriftdarstellung
+}
+
+body {
+  min-height: 100vh; // Mindesthöhe für volle Bildschirmhöhe
+  line-height: $line-height-base;
+  font-family: $font-primary;
+  font-weight: $font-weight-regular;
+  color: $color-black;
+  background-color: $color-white;
+  overflow-x: hidden; // Verhindert horizontales Scrollen
+}
+
+// TYPOGRAFIE
+// ---------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-base;
+  
+  &:hover, &:focus {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+strong, b {
+  font-weight: $font-weight-bold;
+}
+
+small {
+  font-size: $font-size-sm;
+}
+
+// LISTEN
+// ---------------------------------------
+ol, ul {
+  padding-left: $spacing-lg;
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+}
+
+li {
+  margin-bottom: $spacing-xs;
+}
+
+// BILDER & MEDIEN
+// ---------------------------------------
+img, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+// FORMULARE
+// ---------------------------------------
+input, 
+button, 
+textarea, 
+select {
+  font: inherit; // Übernimmt die Schriftart des Elternelements
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: $font-primary;
+}
+
+// Fokus-Styles für bessere Zugänglichkeit
+:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// Entfernt blauen Umriss auf mobilen Geräten
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Barrierefreie Fokus-Stile
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// Verbesserte Form-Elemente
+input, textarea {
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid $color-grey-light;
+  border-radius: $border-radius-sm;
+  transition: border-color $transition-base, box-shadow $transition-base;
+  
+  &:hover {
+    border-color: $color-grey;
+  }
+  
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    outline: none;
+  }
+}
+
+// Verbesserte Form-Element-Platzhalter
+::placeholder {
+  color: $color-grey;
+  opacity: 1;
+}
+
+// TABELLEN
+// ---------------------------------------
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: $spacing-md;
+}
+
+th {
+  text-align: left;
+  font-weight: $font-weight-bold;
+}
+
+th, td {
+  padding: $spacing-xs $spacing-sm;
+  border-bottom: 1px solid $color-grey-light;
+}
+
+// SONSTIGES
+// ---------------------------------------
+// Entfernt Gummiband-Effekt in Safari
+html {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Verbesserte a11y für versteckte Elemente
+[hidden] {
+  display: none !important;
+}
+
+// Verbesserte Sichtbarkeit für Bildschirmleser
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Verhindern von Text-/Content-Auswahl für bestimmte Elemente
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Bessere Touch-Ziele auf mobilen Geräten
+@media (max-width: $breakpoint-sm) {
+  button, 
+  input, 
+  select, 
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+// Verhindert Mobil-Zoom bei Tappen auf Eingabefelder in iOS
+@media (max-width: $breakpoint-sm) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  input[type="password"] {
+    font-size: 16px; // iOS zoomt nicht bei Schriftgrößen >= 16px
+  }
+}
+
+// Anpassung für reduzierte Bewegung (Barrierefreiheit)
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

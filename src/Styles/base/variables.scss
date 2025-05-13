@@ -1,0 +1,267 @@
+// =======================================
+// VARIABLEN FÜR SHOP OF SPIRIT
+// =======================================
+
+// FARBPALETTE (BASISFARBEN)
+// ---------------------------------------
+// Primäre Farbpalette basierend auf dem Logo
+$color-primary-base: #92686d; // Mauve/Rosé (mittlerer Ton im Logo)
+$color-primary-light-base: #e8cdbe; // Hellbeige (äußerer Kreis im Logo)
+$color-primary-dark-base: #5e4840; // Dunkelbraun (Textfarbe im Logo)
+
+// Sekundäre Farbpalette
+$color-secondary-base: #e3a988; // Helles Orange (unterer Bereich im Logo)
+$color-secondary-light-base: #d7aca0; // Mittleres Rosa (mittlerer Bereich im Logo)
+$color-secondary-dark-base: #836266; // Dunkles Mauve (oberer Bereich im Logo)
+
+// Neutrale Farben
+$color-white-base: #fbf8f4; // Cremeweiß (Hintergrund des Logos)
+$color-black-base: #2c2420; // Tiefes Dunkelbraun
+$color-grey-light-base: #e9e4e0; // Helles Grau
+$color-grey-base: #aaa6a2; // Mittleres Grau
+$color-grey-dark-base: #645f5a; // Dunkles Grau
+
+// Statusfarben
+$color-success-base: #7c9a76; // Salbeigrün
+$color-warning-base: #e8b45c; // Warmes Gelb
+$color-error-base: #c97064; // Ziegelrot
+$color-info-base: #7897ab; // Gedämpftes Blau
+
+// THEME VARIABLEN (FÜR LIGHT/DARK MODE)
+// ---------------------------------------
+// CSS-Variablen für dynamisches Theming
+
+// Theme-Farben - Light Mode (Standard)
+:root {
+  // Primäre Theme-Farben
+  --color-primary: #{$color-primary-base};
+  --color-primary-light: #{$color-primary-light-base};
+  --color-primary-dark: #{$color-primary-dark-base};
+  
+  // Sekundäre Theme-Farben
+  --color-secondary: #{$color-secondary-base};
+  --color-secondary-light: #{$color-secondary-light-base};
+  --color-secondary-dark: #{$color-secondary-dark-base};
+  
+  // Neutrale Farben
+  --color-white: #{$color-white-base};
+  --color-black: #{$color-black-base};
+  --color-grey-light: #{$color-grey-light-base};
+  --color-grey: #{$color-grey-base};
+  --color-grey-dark: #{$color-grey-dark-base};
+
+  // Semantische Farben
+  --color-success: #{$color-success-base};
+  --color-warning: #{$color-warning-base};
+  --color-error: #{$color-error-base};
+  --color-info: #{$color-info-base};
+  
+  // UI-Farben
+  --color-background: #{$color-white-base};
+  --color-surface: #{$color-white-base};
+  --color-text: #{$color-black-base};
+  --color-text-muted: #{$color-grey-dark-base};
+  --color-border: #{$color-grey-light-base};
+  --color-shadow: rgba(44, 36, 32, 0.1);
+  
+  // Inverse Farben für Komponenten mit Farbkontrast
+  --color-background-inverse: #{$color-black-base};
+  --color-text-inverse: #{$color-white-base};
+}
+
+// Dark Mode Theme
+[data-theme="dark"] {
+  // Primäre Theme-Farben (leicht angepasst für besseren Kontrast im Dark Mode)
+  --color-primary: #{$color-primary-base};
+  --color-primary-light: #{mix($color-primary-base, #fff, 85%)};
+  --color-primary-dark: #{mix($color-primary-dark-base, #000, 90%)};
+  
+  // Sekundäre Theme-Farben
+  --color-secondary: #{$color-secondary-base};
+  --color-secondary-light: #{mix($color-secondary-light-base, #fff, 85%)};
+  --color-secondary-dark: #{mix($color-secondary-dark-base, #000, 90%)};
+  
+  // Invertierte Neutrale Farben für Dark Mode
+  --color-white: #{$color-black-base};
+  --color-black: #{$color-white-base};
+  --color-grey-light: #{darken($color-grey-dark-base, 10%)};
+  --color-grey: #{$color-grey-dark-base};
+  --color-grey-dark: #{$color-grey-light-base};
+  
+  // Semantische Farben (leicht angepasst für bessere Sichtbarkeit)
+  --color-success: #{lighten($color-success-base, 10%)};
+  --color-warning: #{lighten($color-warning-base, 5%)};
+  --color-error: #{lighten($color-error-base, 5%)};
+  --color-info: #{lighten($color-info-base, 10%)};
+  
+  // UI-Farben
+  --color-background: #222020;
+  --color-surface: #2c2826;
+  --color-text: #{$color-white-base};
+  --color-text-muted: #{$color-grey-light-base};
+  --color-border: #{$color-grey-dark-base};
+  --color-shadow: rgba(0, 0, 0, 0.25);
+  
+  // Inverse Farben
+  --color-background-inverse: #{$color-white-base};
+  --color-text-inverse: #{$color-black-base};
+}
+
+// SCSS Variablen für einfachen Zugriff (verwendet die CSS-Variablen)
+// Diese werden für SCSS Mixins und Funktionen verwendet
+$color-primary: var(--color-primary);
+$color-primary-light: var(--color-primary-light);
+$color-primary-dark: var(--color-primary-dark);
+
+$color-secondary: var(--color-secondary);
+$color-secondary-light: var(--color-secondary-light);
+$color-secondary-dark: var(--color-secondary-dark);
+
+$color-white: var(--color-white);
+$color-black: var(--color-black);
+$color-grey-light: var(--color-grey-light);
+$color-grey: var(--color-grey);
+$color-grey-dark: var(--color-grey-dark);
+
+$color-success: var(--color-success);
+$color-warning: var(--color-warning);
+$color-error: var(--color-error);
+$color-info: var(--color-info);
+
+$color-background: var(--color-background);
+$color-surface: var(--color-surface);
+$color-text: var(--color-text);
+$color-text-muted: var(--color-text-muted);
+$color-border: var(--color-border);
+$color-shadow: var(--color-shadow);
+
+$color-background-inverse: var(--color-background-inverse);
+$color-text-inverse: var(--color-text-inverse);
+
+// TYPOGRAFIE
+// ---------------------------------------
+// Schriftfamilien
+$font-primary: 'Montserrat', sans-serif; // Moderne, klare Schrift für Haupttext
+$font-secondary: 'Playfair Display', serif; // Elegante Serifenschrift für Überschriften
+$font-tertiary: 'Lato', sans-serif; // Alternative Sans-Serif für UI-Elemente
+
+// Schriftgrößen
+$font-size-base: 1rem; // 16px Basis
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-md: 1.125rem; // 18px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-xxl: 2rem; // 32px
+$font-size-xxxl: 2.5rem; // 40px
+$font-size-display: 3.5rem; // 56px
+
+// Schriftgewichte
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Zeilenhöhen
+$line-height-tight: 1.2;
+$line-height-base: 1.5;
+$line-height-loose: 1.8;
+
+// Buchstabenabstände
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.05em;
+$letter-spacing-wider: 0.1em;
+
+// ABSTÄNDE
+// ---------------------------------------
+// Basis-Abstandseinheit
+$spacing-unit: 0.5rem; // 8px bei 16px Basisgröße
+
+// Abstandsgrößen
+$spacing-xxs: $spacing-unit * 0.5; // 4px
+$spacing-xs: $spacing-unit; // 8px
+$spacing-sm: $spacing-unit * 2; // 16px
+$spacing-md: $spacing-unit * 3; // 24px
+$spacing-lg: $spacing-unit * 4; // 32px
+$spacing-xl: $spacing-unit * 6; // 48px
+$spacing-xxl: $spacing-unit * 8; // 64px
+$spacing-xxxl: $spacing-unit * 12; // 96px
+
+// Container-Größen
+$container-max-width: 1280px;
+$container-narrow: 1000px;
+$container-wide: 1600px;
+
+// LAYOUT
+// ---------------------------------------
+// Breakpoints für Responsive Design
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1600px;
+
+// Z-Index-Stufen
+$z-index-below: -1;
+$z-index-base: 0;
+$z-index-above: 1;
+$z-index-dropdown: 100;
+$z-index-sticky: 200;
+$z-index-fixed: 300;
+$z-index-modal-backdrop: 400;
+$z-index-modal: 500;
+$z-index-popover: 600;
+$z-index-tooltip: 700;
+
+// KOMPONENTEN
+// ---------------------------------------
+// Border Radius
+$border-radius-xs: 0.125rem; // 2px
+$border-radius-sm: 0.25rem; // 4px
+$border-radius-md: 0.5rem; // 8px
+$border-radius-lg: 1rem; // 16px
+$border-radius-xl: 1.5rem; // 24px
+$border-radius-full: 50%; // Kreis
+
+// Schatten
+$shadow-sm: 0 1px 3px rgba($color-black, 0.1);
+$shadow-md: 0 4px 6px rgba($color-black, 0.1), 0 1px 3px rgba($color-black, 0.08);
+$shadow-lg: 0 10px 15px rgba($color-black, 0.1), 0 4px 6px rgba($color-black, 0.05);
+$shadow-xl: 0 20px 25px rgba($color-black, 0.1), 0 10px 10px rgba($color-black, 0.04);
+
+// Übergänge und Animationen
+$transition-fast: 0.15s ease-in-out;
+$transition-base: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// GRID
+// ---------------------------------------
+$grid-columns: 12;
+$grid-gutter: $spacing-md; // 24px Standardabstand zwischen Grid-Elementen
+
+// FORMULARE
+// ---------------------------------------
+$input-height: 3rem; // 48px
+$input-padding-h: $spacing-sm; // 16px
+$input-border-width: 1px;
+$input-border-radius: $border-radius-sm;
+$input-border-color: $color-grey-light;
+$input-focus-border-color: $color-primary;
+$input-placeholder-color: $color-grey;
+
+// BUTTONS
+// ---------------------------------------
+$button-font-weight: $font-weight-medium;
+$button-border-radius: $border-radius-md;
+$button-padding-v: $spacing-xs; // 8px
+$button-padding-h: $spacing-lg; // 32px
+$button-transition: $transition-base;
+
+// KARTEN/PRODUKTE
+// ---------------------------------------
+$card-border-radius: $border-radius-lg;
+$card-padding: $spacing-md;
+$card-shadow: $shadow-md;
+$product-image-aspect-ratio: 4/5; // Standard-Seitenverhältnis für Produktbilder

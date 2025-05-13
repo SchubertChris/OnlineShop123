@@ -1,0 +1,330 @@
+// =======================================
+// MIXINS FÜR SHOP OF SPIRIT
+// =======================================
+
+// RESPONSIVE DESIGN
+// ---------------------------------------
+
+// Breakpoint Mixins für flexibles responsive Design
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == sm {
+    $min-sm: $breakpoint-xs + 1;
+    $min-md: $breakpoint-sm + 1;
+    $min-lg: $breakpoint-md + 1;
+    $min-xl: $breakpoint-lg + 1;
+
+    @media (min-width: $min-sm) and (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $min-md) and (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $min-lg) and (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $min-xl) { @content; }
+  }
+}
+
+// Einfachere Mobile-First Media Queries
+@mixin media-min($width) {
+  @media screen and (min-width: $width) { @content; }
+}
+
+// Einfachere Desktop-First Media Queries
+@mixin media-max($width) {
+  @media screen and (max-width: $width) { @content; }
+}
+
+// LAYOUT
+// ---------------------------------------
+
+// Flexbox-Container (Zeile)
+@mixin flex-row($justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Flexbox-Container (Spalte)
+@mixin flex-column($justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Grid-Container
+@mixin grid($columns: $grid-columns, $gap: $grid-gutter) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Zentrieren mit Absolute-Positioning
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Container mit maximaler Breite, zentriert
+@mixin container($max-width: $container-max-width, $padding: $spacing-md) {
+  width: 100%;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+// Aspect Ratio Box
+@mixin aspect-ratio($width: 1, $height: 1) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: ($height / $width) * 100%;
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// TEXT & TYPOGRAFIE
+// ---------------------------------------
+
+// Truncate Text mit Ellipsis
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-Line Text Truncate
+@mixin text-truncate-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Heading-Stile
+@mixin heading($size, $weight: $font-weight-bold, $line-height: $line-height-tight) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  margin-bottom: $spacing-md;
+}
+
+// Font-Smoothing
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// INTERAKTIVE ELEMENTE
+// ---------------------------------------
+
+// Button-Styling
+@mixin button-style($bg-color: $color-primary, $text-color: $color-white, $hover-darkness: 10%) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $button-padding-v $button-padding-h;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $font-primary;
+  font-weight: $button-font-weight;
+  border-radius: $button-border-radius;
+  border: none;
+  cursor: pointer;
+  transition: all $button-transition;
+  text-decoration: none;
+  
+  &:hover, &:focus {
+    background-color: darken($bg-color, $hover-darkness);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Fokus-Ring
+@mixin focus-outline($color: $color-primary, $offset: 3px) {
+  outline: none;
+  box-shadow: 0 0 0 $offset rgba($color, 0.5);
+}
+
+// VISUELLE EFFEKTE
+// ---------------------------------------
+
+// Gradient hinter Text
+@mixin text-gradient($start-color, $end-color) {
+  background: linear-gradient(to right, $start-color, $end-color);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+// Schatten mit Hover-Effekt
+@mixin hover-shadow($initial: $shadow-md, $hover: $shadow-lg) {
+  box-shadow: $initial;
+  transition: box-shadow $transition-base, transform $transition-base;
+  
+  &:hover {
+    box-shadow: $hover;
+    transform: translateY(-4px);
+  }
+}
+
+// Glasmorphismus-Effekt
+@mixin glass-effect($bg-opacity: 0.7, $blur: 10px) {
+  background-color: rgba($color-white, $bg-opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+// Farbverlauf-Hintergrund
+@mixin gradient-bg($direction: to right, $start-color: $color-primary, $end-color: $color-secondary) {
+  background-image: linear-gradient($direction, $start-color, $end-color);
+}
+
+// ANIMATIONEN
+// ---------------------------------------
+
+// Fade-in Animation
+@mixin fade-in($duration: $transition-base, $delay: 0s) {
+  animation: fadeIn $duration ease $delay forwards;
+}
+
+// Slide-in von unten
+@mixin slide-in-up($duration: $transition-base, $delay: 0s, $distance: 20px) {
+  animation: slideInUp $duration ease $delay forwards;
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY($distance);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// UTILITY
+// ---------------------------------------
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Verstecken aber für Screen-Reader zugänglich lassen
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Scrollbare Bereiche mit schönem Scrollbar-Styling
+@mixin styled-scrollbar($width: 6px, $track-color: $color-grey-light, $thumb-color: $color-grey) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $border-radius-sm;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: $border-radius-sm;
+    
+    &:hover {
+      background-color: darken($thumb-color, 10%);
+    }
+  }
+}
+
+// Responsive-Font (Fluid Typography)
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  font-size: $min-font-size;
+  
+  @media screen and (min-width: $min-vw) {
+    font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+  }
+  
+  @media screen and (min-width: $max-vw) {
+    font-size: $max-font-size;
+  }
+}
+
+// Hilfsfunktion für fluid-type
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// E-Commerce spezifische Mixins
+// ---------------------------------------
+
+// Produktkarte
+@mixin product-card {
+  border-radius: $card-border-radius;
+  overflow: hidden;
+  background-color: $color-white;
+  box-shadow: $card-shadow;
+  transition: transform $transition-base, box-shadow $transition-base;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Badge für Produktstatus (Sale, New, etc.)
+@mixin product-badge($bg-color: $color-primary, $text-color: $color-white) {
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  padding: $spacing-xxs $spacing-xs;
+  background-color: $bg-color;
+  color: $text-color;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  border-radius: $border-radius-sm;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+}
